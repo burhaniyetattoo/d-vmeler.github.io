@@ -9,25 +9,11 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{background:#0a0a0a;color:white;}
 
-body{
-background:#0a0a0a;
-color:white;
-overflow-x:hidden;
-}
+header{text-align:center;padding:60px 20px;}
+header h1{font-size:35px;}
 
-/* HEADER */
-header{
-text-align:center;
-padding:80px 20px;
-}
-
-header h1{
-font-size:40px;
-animation:fadeDown 1s;
-}
-
-/* BUBBLES */
 .prices{
 display:flex;
 flex-wrap:wrap;
@@ -39,64 +25,50 @@ padding:20px;
 .bubble{
 width:220px;
 padding:25px;
-border-radius:40px;
+border-radius:30px;
 background:#1a1a1a;
 cursor:pointer;
 transition:.3s;
+text-align:center;
 }
 
-.bubble:hover{
-transform:scale(1.1);
-background:#2a2a2a;
-}
+.bubble:hover{transform:scale(1.1);background:#2a2a2a;}
 
-.bubble h3{margin-bottom:10px}
-
-/* POPUP */
 .popup{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.95);
 display:none;
-justify-content:center;
-align-items:center;
 flex-direction:column;
+align-items:center;
+overflow:auto;
 z-index:999;
 }
 
 .popup img{
-width:80%;
+width:90%;
 max-width:400px;
-border-radius:20px;
 margin:10px;
+border-radius:15px;
 }
 
 .close{
-position:absolute;
+position:fixed;
 top:20px;
-right:30px;
+right:25px;
 font-size:30px;
 cursor:pointer;
 }
 
-/* BUTTON */
 .btn{
 display:inline-block;
-margin:40px;
+margin:30px;
 padding:15px 30px;
 border-radius:30px;
 background:#e1306c;
 color:white;
 text-decoration:none;
-}
-
-/* ANIM */
-@keyframes fadeDown{
-from{opacity:0;transform:translateY(-40px)}
-to{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
@@ -109,35 +81,12 @@ to{opacity:1;transform:translateY(0)}
 
 <section class="prices">
 
-<div class="bubble" onclick="openGallery('minimal')">
-<h3>Minimal Dövme</h3>
-<p>1000 ₺</p>
-</div>
-
-<div class="bubble" onclick="openGallery('half')">
-<h3>Yarım Kol Ön Yüz</h3>
-<p>8000 ₺</p>
-</div>
-
-<div class="bubble" onclick="openGallery('fullhalf')">
-<h3>Yarım Kol Komple</h3>
-<p>15000 ₺</p>
-</div>
-
-<div class="bubble" onclick="openGallery('full')">
-<h3>Tam Kol</h3>
-<p>30000 ₺</p>
-</div>
-
-<div class="bubble" onclick="openGallery('shoulder')">
-<h3>Yarım Omuz</h3>
-<p>15000 ₺</p>
-</div>
-
-<div class="bubble" onclick="openGallery('remove')">
-<h3>Dövme Silme</h3>
-<p>1500 - 3000 ₺</p>
-</div>
+<div class="bubble" onclick="openGallery('minimal')">Minimal Dövme<br><b>1000 ₺</b></div>
+<div class="bubble" onclick="openGallery('half')">Yarım Kol Ön Yüz<br><b>8000 ₺</b></div>
+<div class="bubble" onclick="openGallery('fullhalf')">Yarım Kol Komple<br><b>15000 ₺</b></div>
+<div class="bubble" onclick="openGallery('full')">Tam Kol<br><b>30000 ₺</b></div>
+<div class="bubble" onclick="openGallery('shoulder')">Yarım Omuz<br><b>15000 ₺</b></div>
+<div class="bubble" onclick="openGallery('remove')">Dövme Silme<br><b>1500-3000 ₺</b></div>
 
 </section>
 
@@ -147,7 +96,6 @@ Instagram’dan İletişim
 </a>
 </div>
 
-<!-- POPUP -->
 <div class="popup" id="popup">
 <span class="close" onclick="closeGallery()">✖</span>
 <div id="gallery"></div>
@@ -156,34 +104,34 @@ Instagram’dan İletişim
 <script>
 const images = {
 minimal:[
-"https://source.unsplash.com/400x400/?minimal,tattoo",
-"https://source.unsplash.com/401x400/?small,tattoo",
-"https://source.unsplash.com/402x400/?tiny,tattoo"
+"https://picsum.photos/400?random=1",
+"https://picsum.photos/400?random=2",
+"https://picsum.photos/400?random=3"
 ],
 half:[
-"https://source.unsplash.com/400x400/?half,sleeve,tattoo",
-"https://source.unsplash.com/401x400/?arm,tattoo",
-"https://source.unsplash.com/402x400/?black,grey,tattoo"
+"https://picsum.photos/400?random=4",
+"https://picsum.photos/400?random=5",
+"https://picsum.photos/400?random=6"
 ],
 fullhalf:[
-"https://source.unsplash.com/400x400/?sleeve,tattoo",
-"https://source.unsplash.com/401x400/?tattoo,arm",
-"https://source.unsplash.com/402x400/?ink,arm"
+"https://picsum.photos/400?random=7",
+"https://picsum.photos/400?random=8",
+"https://picsum.photos/400?random=9"
 ],
 full:[
-"https://source.unsplash.com/400x400/?full,sleeve,tattoo",
-"https://source.unsplash.com/401x400/?realistic,tattoo",
-"https://source.unsplash.com/402x400/?tattoo,design"
+"https://picsum.photos/400?random=10",
+"https://picsum.photos/400?random=11",
+"https://picsum.photos/400?random=12"
 ],
 shoulder:[
-"https://source.unsplash.com/400x400/?shoulder,tattoo",
-"https://source.unsplash.com/401x400/?upper,arm,tattoo",
-"https://source.unsplash.com/402x400/?tattoo,shoulder"
+"https://picsum.photos/400?random=13",
+"https://picsum.photos/400?random=14",
+"https://picsum.photos/400?random=15"
 ],
 remove:[
-"https://source.unsplash.com/400x400/?laser,tattoo",
-"https://source.unsplash.com/401x400/?tattoo,removal",
-"https://source.unsplash.com/402x400/?skin,laser"
+"https://picsum.photos/400?random=16",
+"https://picsum.photos/400?random=17",
+"https://picsum.photos/400?random=18"
 ]
 };
 
