@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burhaniye Tattoo</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0a0a0a;
+    color: white;
+    text-align: center;
+}
+
+/* HEADER */
+header {
+    padding: 60px 20px;
+    font-size: 28px;
+    font-weight: bold;
+    animation: fadeDown 1.5s ease;
+}
+
+/* ANIMATIONS */
+@keyframes fadeDown {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeUp {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* PRICE SECTION */
+.prices {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* BUBBLE DESIGN */
+.bubble {
+    background: linear-gradient(145deg, #1c1c1c, #2b2b2b);
+    padding: 25px;
+    border-radius: 50px;
+    width: 200px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    transition: 0.3s;
+    animation: fadeUp 1.5s ease;
+}
+
+.bubble:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(255,255,255,0.3);
+}
+
+/* CONTACT BUTTON */
+.contact {
+    margin: 40px;
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 30px;
+    background: #e1306c;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ff4f8b;
+}
+
+/* MOBILE */
+@media(max-width: 600px){
+    header {
+        font-size: 22px;
+    }
+
+    .bubble {
+        width: 80%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    Burhaniye Tattoo
+</header>
+
+<section class="prices">
+
+    <div class="bubble">Minimal Dövme<br><b>1000 ₺</b></div>
+
+    <div class="bubble">Yarım Kol Ön Yüz<br><b>8000 ₺</b></div>
+
+    <div class="bubble">Yarım Kol Komple<br><b>15000 ₺</b></div>
+
+    <div class="bubble">Tam Kol<br><b>30000 ₺</b></div>
+
+    <div class="bubble">Yarım Omuz<br><b>15000 ₺</b></div>
+
+    <div class="bubble">Dövme Silme<br><b>1500 - 3000 ₺</b></div>
+
+</section>
+
+<div class="contact">
+    <a href="https://www.instagram.com/burhaniye_tattoo/" target="_blank" class="btn">
+        İletişim (Instagram)
+    </a>
+</div>
+
+</body>
+</html>
