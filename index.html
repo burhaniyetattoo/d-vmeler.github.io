@@ -17,6 +17,8 @@
 body{
 color:white;
 text-align:center;
+
+/* 🔥 GERÇEK DÖVME ARKA PLAN */
 background:url('https://images.unsplash.com/photo-1598373182133-52452f7691ef') no-repeat center center fixed;
 background-size:cover;
 }
@@ -27,16 +29,17 @@ position:fixed;
 top:0;left:0;
 width:100%;
 height:100%;
-background:rgba(0,20,0,0.85);
+background:rgba(0,25,0,0.85);
 z-index:-1;
 }
 
+/* HEADER */
 header{padding:60px 20px;}
 
 .logo-img{
 width:180px;
 filter: drop-shadow(0 0 10px #00ff88)
-        drop-shadow(0 0 20px #ffffff);
+        drop-shadow(0 0 25px #ffffff);
 }
 
 .btn{
@@ -55,6 +58,7 @@ transition:.3s;
 box-shadow:0 0 20px #00ff88,0 0 30px #ffffff;
 }
 
+/* SECTION */
 .section{
 padding:25px;
 background:rgba(0,20,0,0.6);
@@ -63,6 +67,7 @@ border-radius:20px;
 box-shadow:0 0 15px rgba(0,255,120,0.2);
 }
 
+/* SELECT */
 select{
 padding:12px;
 border-radius:10px;
@@ -73,6 +78,7 @@ margin:5px;
 box-shadow:0 0 10px #00ff88 inset;
 }
 
+/* RESULT */
 #result{
 margin-top:20px;
 font-size:20px;
@@ -122,7 +128,6 @@ padding:20px;
 color:#aaa;
 font-size:12px;
 }
-
 </style>
 </head>
 
@@ -206,7 +211,7 @@ let style=document.getElementById("style").value;
 
 let min=0,max=0;
 
-// BASE
+// BASE FİYAT
 
 if(size==="minimal"){
 min=900; max=1000;
@@ -228,7 +233,7 @@ if(size==="buyuk" && style!=="yazi"){
 min=10000; max=15000;
 }
 
-// STYLE EFFECT
+// STİL EFEKT
 
 if(style==="detayli"){
 min=Math.round(min*1.2);
