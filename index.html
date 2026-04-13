@@ -9,14 +9,11 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
-
 body{background:#0a0a0a;color:white;text-align:center;}
 
-/* HEADER */
 header{padding:60px 20px;}
 header h1{font-size:34px;}
 
-/* PRICE */
 .prices{
 display:flex;
 flex-wrap:wrap;
@@ -39,7 +36,6 @@ transform:scale(1.1);
 background:#2a2a2a;
 }
 
-/* GALLERY */
 .gallery{
 display:none;
 flex-wrap:wrap;
@@ -48,14 +44,11 @@ gap:15px;
 padding:20px;
 }
 
-.gallery a{
+.gallery img{
 width:45%;
 max-width:250px;
-}
-
-.gallery img{
-width:100%;
 border-radius:15px;
+cursor:pointer;
 transition:.3s;
 }
 
@@ -63,7 +56,31 @@ transition:.3s;
 transform:scale(1.05);
 }
 
-/* BUTTON */
+.fullscreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.fullscreen img{
+width:90%;
+max-width:500px;
+}
+
+.back{
+margin:20px;
+cursor:pointer;
+color:#aaa;
+font-size:18px;
+}
+
 .btn{
 display:inline-block;
 margin:30px;
@@ -72,13 +89,6 @@ border-radius:30px;
 background:#e1306c;
 color:white;
 text-decoration:none;
-}
-
-.back{
-margin:20px;
-cursor:pointer;
-color:#aaa;
-font-size:18px;
 }
 </style>
 </head>
@@ -89,29 +99,31 @@ font-size:18px;
 <h1>Burhaniye Tattoo</h1>
 </header>
 
-<!-- FİYATLAR -->
 <section class="prices" id="prices">
-
-<div class="bubble" onclick="openCat('minimal')">Minimal Dövme<br><b>1000 ₺</b></div>
-
-<div class="bubble" onclick="openCat('kol')">Yarım Kol Ön Yüz<br><b>8000 ₺</b></div>
-
-<div class="bubble" onclick="openCat('kol')">Yarım Kol Komple<br><b>15000 ₺</b></div>
-
-<div class="bubble" onclick="openCat('full')">Tam Kol<br><b>30000 ₺</b></div>
-
-<div class="bubble" onclick="openCat('omuz')">Yarım Omuz<br><b>15000 ₺</b></div>
-
-<div class="bubble" onclick="openCat('remove')">Dövme Silme<br><b>1500-3000 ₺</b></div>
-
+<div class="bubble" onclick="openCat()">Minimal Dövme<br><b>1000 ₺</b></div>
 </section>
 
-<div class="back" onclick="goBack()" id="backBtn" style="display:none;">
-← Geri
-</div>
+<div class="back" onclick="goBack()" id="backBtn" style="display:none;">← Geri</div>
 
 <!-- GALERİ -->
-<div class="gallery" id="gallery"></div>
+<div class="gallery" id="gallery">
+
+<img src="1.jpg" onclick="openFull(this.src)">
+<img src="2.jpg" onclick="openFull(this.src)">
+<img src="3.jpg" onclick="openFull(this.src)">
+<img src="4.jpg" onclick="openFull(this.src)">
+<img src="5.jpg" onclick="openFull(this.src)">
+<img src="6.jpg" onclick="openFull(this.src)">
+<img src="7.jpg" onclick="openFull(this.src)">
+<img src="8.jpg" onclick="openFull(this.src)">
+<img src="9.jpg" onclick="openFull(this.src)">
+
+</div>
+
+<!-- FULLSCREEN -->
+<div class="fullscreen" id="full" onclick="closeFull()">
+<img id="fullImg">
+</div>
 
 <div>
 <a href="https://www.instagram.com/burhaniye_tattoo/" target="_blank" class="btn">
@@ -120,60 +132,25 @@ Instagram’dan İletişim
 </div>
 
 <script>
-const data = {
-
-minimal:[
-"https://www.instagram.com/p/DXEBKtQjKDk/",
-"https://www.instagram.com/p/DXEBJHGjObw/"
-],
-
-kol:[
-"https://www.instagram.com/p/DXEA7adjBSe/",
-"https://www.instagram.com/p/DXEA4nqDBnL/",
-"https://www.instagram.com/p/DXEA1-fDJAx/",
-"https://www.instagram.com/p/DXEA0KiDKKS/"
-],
-
-full:[
-"https://www.instagram.com/p/DXEAysfjMzV/",
-"https://www.instagram.com/p/DXEAw6QjBQW/"
-],
-
-omuz:[
-"https://www.instagram.com/p/DXEAudajNRT/"
-],
-
-remove:[
-"https://www.instagram.com/p/DXEAsgDDGaF/"
-]
-
-};
-
-function openCat(cat){
+function openCat(){
 document.getElementById("prices").style.display="none";
 document.getElementById("gallery").style.display="flex";
 document.getElementById("backBtn").style.display="block";
-
-let gallery=document.getElementById("gallery");
-gallery.innerHTML="";
-
-data[cat].forEach(link=>{
-let a=document.createElement("a");
-a.href=link;
-a.target="_blank";
-
-let img=document.createElement("img");
-img.src="https://picsum.photos/300?random="+Math.random();
-
-a.appendChild(img);
-gallery.appendChild(a);
-});
 }
 
 function goBack(){
 document.getElementById("prices").style.display="flex";
 document.getElementById("gallery").style.display="none";
 document.getElementById("backBtn").style.display="none";
+}
+
+function openFull(src){
+document.getElementById("full").style.display="flex";
+document.getElementById("fullImg").src=src;
+}
+
+function closeFull(){
+document.getElementById("full").style.display="none";
 }
 </script>
 
