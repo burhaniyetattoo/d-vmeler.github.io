@@ -9,10 +9,12 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+
 body{background:#0a0a0a;color:white;text-align:center;}
 
+/* HEADER */
 header{padding:60px 20px;}
-header h1{font-size:36px;}
+header h1{font-size:34px;}
 
 /* PRICE */
 .prices{
@@ -32,7 +34,10 @@ cursor:pointer;
 transition:.3s;
 }
 
-.bubble:hover{transform:scale(1.1);}
+.bubble:hover{
+transform:scale(1.1);
+background:#2a2a2a;
+}
 
 /* GALLERY */
 .gallery{
@@ -44,7 +49,6 @@ padding:20px;
 }
 
 .gallery a{
-display:block;
 width:45%;
 max-width:250px;
 }
@@ -74,6 +78,7 @@ text-decoration:none;
 margin:20px;
 cursor:pointer;
 color:#aaa;
+font-size:18px;
 }
 </style>
 </head>
@@ -84,72 +89,89 @@ color:#aaa;
 <h1>Burhaniye Tattoo</h1>
 </header>
 
-<section class="prices">
-<div class="bubble" onclick="showGallery()">Çalışmalarım<br><b>Tıkla</b></div>
+<!-- FİYATLAR -->
+<section class="prices" id="prices">
+
+<div class="bubble" onclick="openCat('minimal')">Minimal Dövme<br><b>1000 ₺</b></div>
+
+<div class="bubble" onclick="openCat('kol')">Yarım Kol Ön Yüz<br><b>8000 ₺</b></div>
+
+<div class="bubble" onclick="openCat('kol')">Yarım Kol Komple<br><b>15000 ₺</b></div>
+
+<div class="bubble" onclick="openCat('full')">Tam Kol<br><b>30000 ₺</b></div>
+
+<div class="bubble" onclick="openCat('omuz')">Yarım Omuz<br><b>15000 ₺</b></div>
+
+<div class="bubble" onclick="openCat('remove')">Dövme Silme<br><b>1500-3000 ₺</b></div>
+
 </section>
 
-<div class="back" onclick="goBack()" id="backBtn" style="display:none;">← Geri</div>
+<div class="back" onclick="goBack()" id="backBtn" style="display:none;">
+← Geri
+</div>
 
 <!-- GALERİ -->
-<div class="gallery" id="gallery">
-
-<a href="https://www.instagram.com/p/DXEBKtQjKDk/" target="_blank">
-<img src="https://picsum.photos/300?1">
-</a>
-
-<a href="https://www.instagram.com/p/DXEBJHGjObw/" target="_blank">
-<img src="https://picsum.photos/300?2">
-</a>
-
-<a href="https://www.instagram.com/p/DXEA7adjBSe/" target="_blank">
-<img src="https://picsum.photos/300?3">
-</a>
-
-<a href="https://www.instagram.com/p/DXEA4nqDBnL/" target="_blank">
-<img src="https://picsum.photos/300?4">
-</a>
-
-<a href="https://www.instagram.com/p/DXEA1-fDJAx/" target="_blank">
-<img src="https://picsum.photos/300?5">
-</a>
-
-<a href="https://www.instagram.com/p/DXEA0KiDKKS/" target="_blank">
-<img src="https://picsum.photos/300?6">
-</a>
-
-<a href="https://www.instagram.com/p/DXEAysfjMzV/" target="_blank">
-<img src="https://picsum.photos/300?7">
-</a>
-
-<a href="https://www.instagram.com/p/DXEAw6QjBQW/" target="_blank">
-<img src="https://picsum.photos/300?8">
-</a>
-
-<a href="https://www.instagram.com/p/DXEAudajNRT/" target="_blank">
-<img src="https://picsum.photos/300?9">
-</a>
-
-<a href="https://www.instagram.com/p/DXEAsgDDGaF/" target="_blank">
-<img src="https://picsum.photos/300?10">
-</a>
-
-</div>
+<div class="gallery" id="gallery"></div>
 
 <div>
 <a href="https://www.instagram.com/burhaniye_tattoo/" target="_blank" class="btn">
-Instagram’a Git
+Instagram’dan İletişim
 </a>
 </div>
 
 <script>
-function showGallery(){
-document.querySelector(".prices").style.display="none";
+const data = {
+
+minimal:[
+"https://www.instagram.com/p/DXEBKtQjKDk/",
+"https://www.instagram.com/p/DXEBJHGjObw/"
+],
+
+kol:[
+"https://www.instagram.com/p/DXEA7adjBSe/",
+"https://www.instagram.com/p/DXEA4nqDBnL/",
+"https://www.instagram.com/p/DXEA1-fDJAx/",
+"https://www.instagram.com/p/DXEA0KiDKKS/"
+],
+
+full:[
+"https://www.instagram.com/p/DXEAysfjMzV/",
+"https://www.instagram.com/p/DXEAw6QjBQW/"
+],
+
+omuz:[
+"https://www.instagram.com/p/DXEAudajNRT/"
+],
+
+remove:[
+"https://www.instagram.com/p/DXEAsgDDGaF/"
+]
+
+};
+
+function openCat(cat){
+document.getElementById("prices").style.display="none";
 document.getElementById("gallery").style.display="flex";
 document.getElementById("backBtn").style.display="block";
+
+let gallery=document.getElementById("gallery");
+gallery.innerHTML="";
+
+data[cat].forEach(link=>{
+let a=document.createElement("a");
+a.href=link;
+a.target="_blank";
+
+let img=document.createElement("img");
+img.src="https://picsum.photos/300?random="+Math.random();
+
+a.appendChild(img);
+gallery.appendChild(a);
+});
 }
 
 function goBack(){
-document.querySelector(".prices").style.display="flex";
+document.getElementById("prices").style.display="flex";
 document.getElementById("gallery").style.display="none";
 document.getElementById("backBtn").style.display="none";
 }
