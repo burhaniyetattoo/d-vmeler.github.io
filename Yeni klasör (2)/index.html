@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burhaniye Tattoo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{background:#0a0a0a;color:white;text-align:center;}
+
+header{padding:60px 20px;}
+header h1{font-size:34px;}
+
+.prices{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:20px;
+}
+
+.bubble{
+width:220px;
+padding:25px;
+border-radius:30px;
+background:#1a1a1a;
+cursor:pointer;
+transition:.3s;
+}
+
+.bubble:hover{
+transform:scale(1.1);
+background:#2a2a2a;
+}
+
+.gallery{
+display:none;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+padding:20px;
+}
+
+.gallery img{
+width:45%;
+max-width:250px;
+border-radius:15px;
+cursor:pointer;
+transition:.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+.fullscreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.fullscreen img{
+width:90%;
+max-width:500px;
+}
+
+.back{
+margin:20px;
+cursor:pointer;
+color:#aaa;
+font-size:18px;
+}
+
+.btn{
+display:inline-block;
+margin:30px;
+padding:15px 30px;
+border-radius:30px;
+background:#e1306c;
+color:white;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Burhaniye Tattoo</h1>
+</header>
+
+<section class="prices" id="prices">
+<div class="bubble" onclick="openCat()">Minimal Dövme<br><b>1000 ₺</b></div>
+</section>
+
+<div class="back" onclick="goBack()" id="backBtn" style="display:none;">← Geri</div>
+
+<!-- GALERİ -->
+<div class="gallery" id="gallery">
+
+<img src="1.jpg" onclick="openFull(this.src)">
+<img src="2.jpg" onclick="openFull(this.src)">
+<img src="3.jpg" onclick="openFull(this.src)">
+<img src="4.jpg" onclick="openFull(this.src)">
+<img src="5.jpg" onclick="openFull(this.src)">
+<img src="6.jpg" onclick="openFull(this.src)">
+<img src="7.jpg" onclick="openFull(this.src)">
+<img src="8.jpg" onclick="openFull(this.src)">
+<img src="9.jpg" onclick="openFull(this.src)">
+
+</div>
+
+<!-- FULLSCREEN -->
+<div class="fullscreen" id="full" onclick="closeFull()">
+<img id="fullImg">
+</div>
+
+<div>
+<a href="https://www.instagram.com/burhaniye_tattoo/" target="_blank" class="btn">
+Instagram’dan İletişim
+</a>
+</div>
+
+<script>
+function openCat(){
+document.getElementById("prices").style.display="none";
+document.getElementById("gallery").style.display="flex";
+document.getElementById("backBtn").style.display="block";
+}
+
+function goBack(){
+document.getElementById("prices").style.display="flex";
+document.getElementById("gallery").style.display="none";
+document.getElementById("backBtn").style.display="none";
+}
+
+function openFull(src){
+document.getElementById("full").style.display="flex";
+document.getElementById("fullImg").src=src;
+}
+
+function closeFull(){
+document.getElementById("full").style.display="none";
+}
+</script>
+
+</body>
+</html>
