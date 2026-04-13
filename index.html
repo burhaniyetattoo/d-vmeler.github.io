@@ -70,7 +70,6 @@ font-size:20px;
 color:#ff4da6;
 }
 
-/* GALERİ */
 .gallery{
 display:flex;
 flex-wrap:wrap;
@@ -84,7 +83,6 @@ border-radius:15px;
 cursor:pointer;
 }
 
-/* FULLSCREEN */
 .fullscreen{
 position:fixed;
 top:0;left:0;
@@ -99,7 +97,6 @@ align-items:center;
 .fullscreen img{
 width:90%;
 }
-
 </style>
 </head>
 
@@ -149,6 +146,10 @@ width:90%;
 <img src="7.jpg" onclick="openFull(this.src)">
 <img src="8.jpg" onclick="openFull(this.src)">
 <img src="9.jpg" onclick="openFull(this.src)">
+<img src="10.jpg" onclick="openFull(this.src)">
+<img src="11.jpg" onclick="openFull(this.src)">
+<img src="12.jpg" onclick="openFull(this.src)">
+<img src="13.jpg" onclick="openFull(this.src)">
 </div>
 </section>
 
@@ -157,8 +158,6 @@ width:90%;
 </div>
 
 <script>
-
-// FULLSCREEN
 function openFull(src){
 document.getElementById("full").style.display="flex";
 document.getElementById("fullImg").src=src;
@@ -168,26 +167,22 @@ function closeFull(){
 document.getElementById("full").style.display="none";
 }
 
-// FİYAT
 function calcPrice(){
 let size=document.getElementById("size").value;
 let style=document.getElementById("style").value;
 
 let min=0,max=0;
 
-// minimal
 if(size==="minimal"){
 min=900; max=1000;
 }
 
-// yazı
 if(style==="yazi"){
 if(size==="kucuk"){min=900; max=1500;}
 if(size==="orta"){min=1500; max=2500;}
 if(size==="buyuk"){min=2500; max=5000;}
 }
 
-// normal dövmeler
 if(size==="kucuk" && style!=="yazi"){
 min=2000; max=2500;
 }
@@ -200,7 +195,6 @@ min=10000; max=15000;
 
 document.getElementById("result").innerHTML="Yaklaşık Fiyat: "+min+" - "+max+" ₺";
 }
-
 </script>
 
 </body>
