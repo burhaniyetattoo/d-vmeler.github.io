@@ -9,11 +9,12 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
-body{background:#0a0a0a;color:white;}
+body{background:#0a0a0a;color:white;text-align:center;}
 
-header{text-align:center;padding:60px 20px;}
-header h1{font-size:35px;}
+header{padding:60px 20px;}
+header h1{font-size:36px;}
 
+/* PRICE */
 .prices{
 display:flex;
 flex-wrap:wrap;
@@ -29,38 +30,36 @@ border-radius:30px;
 background:#1a1a1a;
 cursor:pointer;
 transition:.3s;
-text-align:center;
 }
 
-.bubble:hover{transform:scale(1.1);background:#2a2a2a;}
+.bubble:hover{transform:scale(1.1);}
 
-.popup{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.95);
+/* GALLERY */
+.gallery{
 display:none;
-flex-direction:column;
-align-items:center;
-overflow:auto;
-z-index:999;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+padding:20px;
 }
 
-.popup img{
-width:90%;
-max-width:400px;
-margin:10px;
+.gallery a{
+display:block;
+width:45%;
+max-width:250px;
+}
+
+.gallery img{
+width:100%;
 border-radius:15px;
+transition:.3s;
 }
 
-.close{
-position:fixed;
-top:20px;
-right:25px;
-font-size:30px;
-cursor:pointer;
+.gallery img:hover{
+transform:scale(1.05);
 }
 
+/* BUTTON */
 .btn{
 display:inline-block;
 margin:30px;
@@ -69,6 +68,12 @@ border-radius:30px;
 background:#e1306c;
 color:white;
 text-decoration:none;
+}
+
+.back{
+margin:20px;
+cursor:pointer;
+color:#aaa;
 }
 </style>
 </head>
@@ -80,78 +85,73 @@ text-decoration:none;
 </header>
 
 <section class="prices">
-
-<div class="bubble" onclick="openGallery('minimal')">Minimal Dövme<br><b>1000 ₺</b></div>
-<div class="bubble" onclick="openGallery('half')">Yarım Kol Ön Yüz<br><b>8000 ₺</b></div>
-<div class="bubble" onclick="openGallery('fullhalf')">Yarım Kol Komple<br><b>15000 ₺</b></div>
-<div class="bubble" onclick="openGallery('full')">Tam Kol<br><b>30000 ₺</b></div>
-<div class="bubble" onclick="openGallery('shoulder')">Yarım Omuz<br><b>15000 ₺</b></div>
-<div class="bubble" onclick="openGallery('remove')">Dövme Silme<br><b>1500-3000 ₺</b></div>
-
+<div class="bubble" onclick="showGallery()">Çalışmalarım<br><b>Tıkla</b></div>
 </section>
 
-<div style="text-align:center;">
+<div class="back" onclick="goBack()" id="backBtn" style="display:none;">← Geri</div>
+
+<!-- GALERİ -->
+<div class="gallery" id="gallery">
+
+<a href="https://www.instagram.com/p/DXEBKtQjKDk/" target="_blank">
+<img src="https://picsum.photos/300?1">
+</a>
+
+<a href="https://www.instagram.com/p/DXEBJHGjObw/" target="_blank">
+<img src="https://picsum.photos/300?2">
+</a>
+
+<a href="https://www.instagram.com/p/DXEA7adjBSe/" target="_blank">
+<img src="https://picsum.photos/300?3">
+</a>
+
+<a href="https://www.instagram.com/p/DXEA4nqDBnL/" target="_blank">
+<img src="https://picsum.photos/300?4">
+</a>
+
+<a href="https://www.instagram.com/p/DXEA1-fDJAx/" target="_blank">
+<img src="https://picsum.photos/300?5">
+</a>
+
+<a href="https://www.instagram.com/p/DXEA0KiDKKS/" target="_blank">
+<img src="https://picsum.photos/300?6">
+</a>
+
+<a href="https://www.instagram.com/p/DXEAysfjMzV/" target="_blank">
+<img src="https://picsum.photos/300?7">
+</a>
+
+<a href="https://www.instagram.com/p/DXEAw6QjBQW/" target="_blank">
+<img src="https://picsum.photos/300?8">
+</a>
+
+<a href="https://www.instagram.com/p/DXEAudajNRT/" target="_blank">
+<img src="https://picsum.photos/300?9">
+</a>
+
+<a href="https://www.instagram.com/p/DXEAsgDDGaF/" target="_blank">
+<img src="https://picsum.photos/300?10">
+</a>
+
+</div>
+
+<div>
 <a href="https://www.instagram.com/burhaniye_tattoo/" target="_blank" class="btn">
-Instagram’dan İletişim
+Instagram’a Git
 </a>
 </div>
 
-<div class="popup" id="popup">
-<span class="close" onclick="closeGallery()">✖</span>
-<div id="gallery"></div>
-</div>
-
 <script>
-const images = {
-minimal:[
-"https://picsum.photos/400?random=1",
-"https://picsum.photos/400?random=2",
-"https://picsum.photos/400?random=3"
-],
-half:[
-"https://picsum.photos/400?random=4",
-"https://picsum.photos/400?random=5",
-"https://picsum.photos/400?random=6"
-],
-fullhalf:[
-"https://picsum.photos/400?random=7",
-"https://picsum.photos/400?random=8",
-"https://picsum.photos/400?random=9"
-],
-full:[
-"https://picsum.photos/400?random=10",
-"https://picsum.photos/400?random=11",
-"https://picsum.photos/400?random=12"
-],
-shoulder:[
-"https://picsum.photos/400?random=13",
-"https://picsum.photos/400?random=14",
-"https://picsum.photos/400?random=15"
-],
-remove:[
-"https://picsum.photos/400?random=16",
-"https://picsum.photos/400?random=17",
-"https://picsum.photos/400?random=18"
-]
-};
-
-function openGallery(type){
-let popup=document.getElementById("popup");
-let gallery=document.getElementById("gallery");
-
-gallery.innerHTML="";
-
-images[type].forEach(src=>{
-let img=document.createElement("img");
-img.src=src;
-gallery.appendChild(img);
-});
-
-popup.style.display="flex";
+function showGallery(){
+document.querySelector(".prices").style.display="none";
+document.getElementById("gallery").style.display="flex";
+document.getElementById("backBtn").style.display="block";
 }
 
-function closeGallery(){
-document.getElementById("popup").style.display="none";
+function goBack(){
+document.querySelector(".prices").style.display="flex";
+document.getElementById("gallery").style.display="none";
+document.getElementById("backBtn").style.display="none";
 }
 </script>
 
