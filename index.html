@@ -15,30 +15,35 @@ body{
 color:white;
 text-align:center;
 
-/* 🔥 SABİT ARKA PLAN */
+/* SABİT ARKA PLAN */
 background:url('https://images.unsplash.com/photo-1542728928-1413d1894ed1') no-repeat center center fixed;
 background-size:cover;
 }
 
-/* KARARTMA EFEKTİ */
+/* KARARTMA */
 body::before{
 content:"";
 position:fixed;
 top:0;left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.75);
+background:rgba(0,0,0,0.8);
 z-index:-1;
 }
 
 /* LOGO */
-.logo{
-font-size:34px;
-font-weight:700;
-letter-spacing:2px;
-margin-bottom:10px;
+.logo-img{
+width:220px;
+max-width:80%;
+margin-bottom:15px;
+
+/* NEON EFEKT */
+filter: drop-shadow(0 0 10px #e1306c)
+        drop-shadow(0 0 20px #e1306c)
+        drop-shadow(0 0 30px #e1306c);
 }
 
+/* HEADER */
 header{
 padding:60px 20px;
 }
@@ -56,7 +61,7 @@ transition:.3s;
 }
 .btn:hover{transform:scale(1.05);}
 
-/* WHATSAPP */
+/* WHATSAPP FLOAT */
 .whatsapp{
 position:fixed;
 bottom:20px;
@@ -138,11 +143,15 @@ color:#aaa;
 <body>
 
 <header>
+
+<!-- LOGO -->
 <img src="logo.png" class="logo-img">
+
 <p>Profesyonel & Hijyenik Dövme</p>
 
 <a href="https://wa.me/905XXXXXXXXX" class="btn">WhatsApp</a>
 <a href="https://www.instagram.com/burhaniye_tattoo/" class="btn">Instagram</a>
+
 </header>
 
 <!-- FİYAT -->
@@ -192,7 +201,7 @@ width="90%" height="250" style="border-radius:20px;">
 <img id="fullImg">
 </div>
 
-<!-- WHATSAPP FLOAT -->
+<!-- WHATSAPP -->
 <a href="https://wa.me/905XXXXXXXXX" class="whatsapp">💬</a>
 
 <footer>
