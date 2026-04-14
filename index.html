@@ -12,67 +12,107 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
 
-html{
-scroll-behavior:smooth;
-}
-
-body{
-color:white;
-text-align:center;
-background:black;
+html,body{
+height:100%;
 overflow-x:hidden;
 }
 
-/* 🔥 PARALLAX BACKGROUND */
+/* 🔥 SPLASH SCREEN */
+#splash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+transition:opacity 0.6s ease, visibility 0.6s;
+}
+
+#splash.hide{
+opacity:0;
+visibility:hidden;
+}
+
+.splash-logo{
+width:140px;
+animation:logoZoom 1.5s ease-in-out infinite alternate;
+filter: drop-shadow(0 0 15px #00ff88);
+}
+
+@keyframes logoZoom{
+0%{transform:scale(1);}
+100%{transform:scale(1.1);}
+}
+
+.loader-text{
+margin-top:15px;
+color:#00ff88;
+font-size:14px;
+opacity:0.8;
+animation:fadeText 1.5s infinite;
+}
+
+@keyframes fadeText{
+0%{opacity:0.3;}
+50%{opacity:1;}
+100%{opacity:0.3;}
+}
+
+/* 🔥 ARKA PLAN */
+body{
+color:white;
+text-align:center;
+background:url('bg.jpg') center center no-repeat;
+background-size:cover;
+background-attachment:scroll;
+}
+
+/* OVERLAY */
 body::before{
 content:"";
 position:fixed;
-top:-10%;
-left:-10%;
-width:120%;
-height:120%;
-background:url('bg.jpg') center/cover no-repeat;
-z-index:-2;
-transition:transform 0.2s ease-out;
-}
-
-body::after{
-content:"";
-position:fixed;
+top:0;left:0;
 width:100%;
 height:100%;
 background:rgba(0,25,0,0.85);
 z-index:-1;
 }
 
-/* iOS FEEL */
+/* İLETİŞİM */
+.contact-btn{
+position:fixed;
+top:20px;
+right:20px;
+z-index:999;
+padding:10px 18px;
+border-radius:30px;
+background:rgba(0,255,136,0.15);
+border:1px solid #00ff88;
+color:#00ff88;
+text-decoration:none;
+backdrop-filter:blur(10px);
+}
+
+/* SECTION */
 .section{
 padding:25px;
 margin:15px;
 border-radius:25px;
-background:rgba(0,20,0,0.45);
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
-transition:.4s;
-}
-
-.section:hover{
-transform:translateY(-5px);
+background:rgba(0,20,0,0.5);
+backdrop-filter:blur(15px);
 }
 
 /* HEADER */
-header{padding:60px 20px;}
+header{padding:50px 20px;}
 
 .logo-img{
-width:180px;
+width:160px;
 filter: drop-shadow(0 0 10px #00ff88);
-animation:pulse 2s infinite alternate;
-}
-
-@keyframes pulse{
-from{transform:scale(1);}
-to{transform:scale(1.05);}
 }
 
 /* BUTTON */
@@ -84,21 +124,6 @@ color:white;
 box-shadow:0 0 10px #00ff88;
 border:none;
 cursor:pointer;
-transition:.3s;
-}
-.btn:hover{
-transform:scale(1.05);
-box-shadow:0 0 25px #00ff88;
-}
-
-/* SHAKE */
-.shake{animation:shake 0.4s;}
-@keyframes shake{
-0%{transform:translateX(0);}
-25%{transform:translateX(-5px);}
-50%{transform:translateX(5px);}
-75%{transform:translateX(-5px);}
-100%{transform:translateX(0);}
 }
 
 /* SELECT */
@@ -111,18 +136,17 @@ border:1px solid #00ff88;
 margin:5px;
 }
 
-/* WARNING */
-.warning{
-color:#ff4d4d;
-margin-top:10px;
-display:none;
-}
-
 /* RESULT */
 #result{
 margin-top:20px;
 font-size:22px;
 color:#00ff88;
+}
+
+/* WARNING */
+.warning{
+color:#ff4d4d;
+display:none;
 }
 
 /* LOADING */
@@ -136,75 +160,28 @@ from{transform:translateY(0);}
 to{transform:translateY(8px);}
 }
 
-.progress{
-width:80%;
-height:6px;
-background:#002b1a;
-margin:10px auto;
-border-radius:10px;
-overflow:hidden;
-}
-.progress-bar{
-height:100%;
-background:#00ff88;
-animation:loadBar 1.2s linear forwards;
-}
-@keyframes loadBar{
-0%{width:0;}
-100%{width:100%;}
-}
-
-/* NOTE */
-.note{
-margin-top:10px;
-font-size:14px;
-color:#ccc;
-opacity:0;
-}
-.note.show{opacity:1;}
-
-/* 🔥 GALERİ (13 FOTO) */
+/* GALERİ */
 .gallery{
 display:flex;
 flex-wrap:wrap;
 gap:10px;
 justify-content:center;
 }
-
 .gallery img{
 width:30%;
 border-radius:15px;
 cursor:pointer;
-transition:.3s;
 }
-
-.gallery img:hover{
-transform:scale(1.07);
-box-shadow:0 0 20px #00ff88;
-}
-
-/* FULLSCREEN */
-.fullscreen{
-position:fixed;
-top:0;left:0;
-width:100%;
-height:100%;
-background:black;
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-.fullscreen img{width:90%;}
 
 /* MOBILE */
 @media(max-width:768px){
 .gallery img{width:100%;}
-.logo-img{width:140px;}
+.logo-img{width:130px;}
+.contact-btn{top:10px;right:10px;font-size:12px;}
 }
 
 footer{
-padding:20px;
+padding:15px;
 color:#aaa;
 font-size:12px;
 }
@@ -212,6 +189,16 @@ font-size:12px;
 </head>
 
 <body>
+
+<!-- 🔥 SPLASH -->
+<div id="splash">
+<img src="logo.png" class="splash-logo">
+<div class="loader-text">Yükleniyor...</div>
+</div>
+
+<a href="https://www.instagram.com/burhaniye_tattoo/" target="_blank" class="contact-btn">
+📩 İletişim
+</a>
 
 <header>
 <img src="logo.png" class="logo-img">
@@ -246,7 +233,6 @@ font-size:12px;
 <div id="loadingBox" class="loading-box">
 <div class="needle">💉</div>
 <div>Fiyat hesaplanıyor...</div>
-<div class="progress"><div class="progress-bar"></div></div>
 </div>
 
 <h3 id="result"></h3>
@@ -261,26 +247,13 @@ Bu fiyatlar dövme modeline göre değişebilir. En doğru fiyat için bize ula�
 <h2>Örnek Dövmeler</h2>
 
 <div class="gallery">
-<img src="1.jpg" onclick="openFull(this.src)">
-<img src="2.jpg" onclick="openFull(this.src)">
-<img src="3.jpg" onclick="openFull(this.src)">
-<img src="4.jpg" onclick="openFull(this.src)">
-<img src="5.jpg" onclick="openFull(this.src)">
-<img src="6.jpg" onclick="openFull(this.src)">
-<img src="7.jpg" onclick="openFull(this.src)">
-<img src="8.jpg" onclick="openFull(this.src)">
-<img src="9.jpg" onclick="openFull(this.src)">
-<img src="10.jpg" onclick="openFull(this.src)">
-<img src="11.jpg" onclick="openFull(this.src)">
-<img src="12.jpg" onclick="openFull(this.src)">
-<img src="13.jpg" onclick="openFull(this.src)">
+<img src="1.jpg"><img src="2.jpg"><img src="3.jpg">
+<img src="4.jpg"><img src="5.jpg"><img src="6.jpg">
+<img src="7.jpg"><img src="8.jpg"><img src="9.jpg">
+<img src="10.jpg"><img src="11.jpg"><img src="12.jpg">
 </div>
 
 </section>
-
-<div class="fullscreen" id="full" onclick="closeFull()">
-<img id="fullImg">
-</div>
 
 <footer>
 © 2026 Burhaniye Tattoo
@@ -288,90 +261,29 @@ Bu fiyatlar dövme modeline göre değişebilir. En doğru fiyat için bize ula�
 
 <script>
 
-/* 🔥 PARALLAX PRO */
-document.addEventListener("mousemove",e=>{
-let x=(e.clientX/window.innerWidth - 0.5)*20;
-let y=(e.clientY/window.innerHeight - 0.5)*20;
-document.body.style.setProperty("--x",x+"px");
-document.body.style.setProperty("--y",y+"px");
-
-document.body.querySelector("body::before");
-document.body.style.transform=`translate(${x/4}px, ${y/4}px)`;
+/* 🔥 SPLASH HIDE */
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.getElementById("splash").classList.add("hide");
+},1200);
 });
-
-/* MOBILE PARALLAX */
-window.addEventListener("deviceorientation",e=>{
-let x=e.gamma/5;
-let y=e.beta/10;
-document.body.style.transform=`translate(${x}px, ${y}px)`;
-});
-
-/* FULLSCREEN */
-function openFull(src){
-document.getElementById("full").style.display="flex";
-document.getElementById("fullImg").src=src;
-}
-function closeFull(){
-document.getElementById("full").style.display="none";
-}
 
 /* PRICE */
 function calcPrice(){
-
 let size=document.getElementById("size").value;
 let style=document.getElementById("style").value;
 
-let warn=document.getElementById("warn");
-let btn=document.getElementById("calcBtn");
-
 if(!size || !style){
-warn.style.display="block";
-btn.classList.add("shake");
-setTimeout(()=>btn.classList.remove("shake"),400);
+document.getElementById("warn").style.display="block";
 return;
 }
 
-warn.style.display="none";
-
-document.getElementById("result").innerHTML="";
-document.getElementById("note").classList.remove("show");
-
-let box=document.getElementById("loadingBox");
-box.style.display="block";
+document.getElementById("loadingBox").style.display="block";
 
 setTimeout(()=>{
-
-let min=0,max=0;
-
-if(size==="minimal"){min=900;max=1000;}
-
-if(size==="kucuk"){
-if(style==="detayli"||style==="golgeli"){min=2500;max=3000;}
-else{min=2000;max=3000;}
-}
-
-if(size==="orta"){
-if(style==="yazi"){min=2000;max=4000;}
-else if(style==="normal"){min=3000;max=4000;}
-else{min=3500;max=5000;}
-}
-
-if(size==="buyuk"){
-if(style==="yazi"){min=7000;max=9000;}
-else if(style==="normal"){min=8000;max=11000;}
-else if(style==="detayli"){min=9000;max=15000;}
-else if(style==="golgeli"){min=9000;max=12000;}
-}
-
-box.style.display="none";
-
-document.getElementById("result").innerHTML=
-"Yaklaşık Fiyat: "+min+" - "+max+" ₺";
-
-document.getElementById("note").classList.add("show");
-
+document.getElementById("loadingBox").style.display="none";
+document.getElementById("result").innerHTML="Fiyat hesaplandı";
 },1200);
-
 }
 
 </script>
