@@ -217,12 +217,6 @@ font-size:12px;
 <option value="golgeli">Gölgeli</option>
 </select>
 
-<select id="color">
-<option value="">Renk</option>
-<option value="black">Siyah</option>
-<option value="color">Renkli (%30 İndirim)</option>
-</select>
-
 <br><br>
 
 <button onclick="calcPrice()" class="btn">Fiyat Hesapla</button>
@@ -286,7 +280,6 @@ document.getElementById("full").style.display="none";
 function calcPrice(){
 let size=document.getElementById("size").value;
 let style=document.getElementById("style").value;
-let color=document.getElementById("color").value;
 
 let min=0,max=0;
 
@@ -297,12 +290,6 @@ if(size==="buyuk"){min=8000;max=15000;}
 
 if(style==="detayli"){min*=1.3;max*=1.4;}
 if(style==="golgeli"){min*=1.4;max*=1.5;}
-
-// 🔥 %30 İNDİRİM
-if(color==="color"){
-min*=0.7;
-max*=0.7;
-}
 
 min=Math.round(min);
 max=Math.round(max);
