@@ -7,8 +7,7 @@
 
 <title>Burhaniye Tattoo | Profesyonel Dövme Stüdyosu</title>
 
-<meta name="description" content="Burhaniye Tattoo - Profesyonel, hijyenik ve kaliteli dövme hizmeti. Randevu al, fiyat hesapla, örnek dövmeleri incele.">
-<meta name="keywords" content="Burhaniye dövme, tattoo, dövme fiyat, tattoo studio Balıkesir">
+<meta name="description" content="Burhaniye Tattoo - Profesyonel, hijyenik ve kaliteli dövme hizmeti.">
 <meta name="theme-color" content="#001a00">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
@@ -34,7 +33,7 @@ background:rgba(0,25,0,0.9);
 z-index:-1;
 }
 
-/* ANIMATIONS */
+/* ANIM */
 .fade{
 opacity:0;
 transform:translateY(30px);
@@ -45,7 +44,6 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* HEADER */
 header{padding:60px 20px;}
 
 .logo-img{
@@ -77,17 +75,14 @@ box-shadow:0 0 25px #00ff88,0 0 40px #ffffff;
 transform:scale(1.05);
 }
 
-/* GLASS SECTION */
 .section{
 padding:25px;
 margin:15px;
 border-radius:20px;
 background:rgba(0,20,0,0.5);
 backdrop-filter:blur(10px);
-box-shadow:0 0 20px rgba(0,255,120,0.2);
 }
 
-/* SELECT */
 select{
 padding:12px;
 border-radius:10px;
@@ -97,15 +92,12 @@ border:1px solid #00ff88;
 margin:5px;
 }
 
-/* RESULT */
 #result{
 margin-top:20px;
 font-size:22px;
 color:#00ff88;
-text-shadow:0 0 15px #00ff88;
 }
 
-/* GALERİ */
 .gallery{
 display:flex;
 flex-wrap:wrap;
@@ -125,7 +117,6 @@ transform:scale(1.05);
 box-shadow:0 0 20px #00ff88;
 }
 
-/* FULLSCREEN */
 .fullscreen{
 position:fixed;
 top:0;left:0;
@@ -142,21 +133,11 @@ z-index:999;
 width:90%;
 }
 
-/* TRUST */
-.trust{
-font-size:14px;
-line-height:1.6;
-color:#ccc;
-}
-
-/* MOBILE */
 @media(max-width:768px){
 .gallery img{width:100%;}
 .logo-img{width:140px;}
-.btn{padding:12px 18px;}
 }
 
-/* FOOTER */
 footer{
 padding:20px;
 color:#aaa;
@@ -172,7 +153,6 @@ font-size:12px;
 <p>Profesyonel & Hijyenik Dövme</p>
 
 <a href="https://wa.me/905xxxxxxxxx" class="btn">WhatsApp Randevu</a>
-<a href="https://www.instagram.com/burhaniye_tattoo/" class="btn">Instagram</a>
 </header>
 
 <section class="section fade">
@@ -197,7 +177,7 @@ font-size:12px;
 <select id="color">
 <option value="">Renk</option>
 <option value="black">Siyah</option>
-<option value="color">Renkli</option>
+<option value="color">Renkli (%30 İndirim)</option>
 </select>
 
 <br><br>
@@ -219,17 +199,6 @@ font-size:12px;
 </div>
 </section>
 
-<section class="section fade">
-<h2>Hijyen & Güven</h2>
-<p class="trust">
-✔ Tek kullanımlık iğneler<br>
-✔ Steril ekipman<br>
-✔ Profesyonel çalışma ortamı<br>
-✔ Deneyimli sanatçı<br>
-✔ %100 müşteri memnuniyeti
-</p>
-</section>
-
 <div class="fullscreen" id="full" onclick="closeFull()">
 <img id="fullImg">
 </div>
@@ -240,7 +209,7 @@ font-size:12px;
 
 <script>
 
-// SCROLL ANIMATION
+// ANIMATION
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -259,7 +228,7 @@ function closeFull(){
 document.getElementById("full").style.display="none";
 }
 
-// PRICE SYSTEM
+// PRICE
 function calcPrice(){
 let size=document.getElementById("size").value;
 let style=document.getElementById("style").value;
@@ -275,7 +244,11 @@ if(size==="buyuk"){min=8000;max=15000;}
 if(style==="detayli"){min*=1.3;max*=1.4;}
 if(style==="golgeli"){min*=1.4;max*=1.5;}
 
-if(color==="color"){min+=1000;max+=3000;}
+// 🔥 %30 İNDİRİM
+if(color==="color"){
+min *= 0.7;
+max *= 0.7;
+}
 
 min=Math.round(min);
 max=Math.round(max);
