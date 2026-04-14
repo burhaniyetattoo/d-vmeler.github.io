@@ -22,7 +22,7 @@ overflow-x:hidden;
 background:black;
 }
 
-/* 🔥 PREMIUM ANIMATED BACKGROUND */
+/* BACKGROUND */
 body::before{
 content:"";
 position:fixed;
@@ -30,15 +30,12 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-
 background:url('bg.jpg') no-repeat center center;
 background-size:cover;
-
 animation:bgMove 12s ease-in-out infinite alternate;
 z-index:-2;
 }
 
-/* DARK OVERLAY */
 body::after{
 content:"";
 position:fixed;
@@ -50,13 +47,12 @@ background:rgba(0,25,0,0.85);
 z-index:-1;
 }
 
-/* BACKGROUND ANIMATION */
 @keyframes bgMove{
-0%{transform:scale(1) translateY(0);}
-100%{transform:scale(1.1) translateY(-20px);}
+0%{transform:scale(1);}
+100%{transform:scale(1.1);}
 }
 
-/* SCROLL ANIMATION */
+/* FADE */
 .fade{
 opacity:0;
 transform:translateY(30px);
@@ -107,7 +103,6 @@ margin:15px;
 border-radius:20px;
 background:rgba(0,20,0,0.5);
 backdrop-filter:blur(10px);
-box-shadow:0 0 20px rgba(0,255,120,0.2);
 }
 
 /* SELECT */
@@ -128,6 +123,26 @@ color:#00ff88;
 text-shadow:0 0 15px #00ff88;
 }
 
+/* 🔥 UYARI MESAJI */
+.note{
+margin-top:10px;
+font-size:14px;
+color:#ccc;
+opacity:0;
+transition:.5s;
+text-shadow:0 0 10px #00ff88;
+}
+
+.note.show{
+opacity:1;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 5px #00ff88;}
+to{text-shadow:0 0 15px #00ff88,0 0 25px #ffffff;}
+}
+
 /* GALERİ */
 .gallery{
 display:flex;
@@ -140,15 +155,8 @@ justify-content:center;
 width:30%;
 border-radius:15px;
 cursor:pointer;
-transition:.3s;
 }
 
-.gallery img:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px #00ff88;
-}
-
-/* FULLSCREEN */
 .fullscreen{
 position:fixed;
 top:0;left:0;
@@ -161,22 +169,12 @@ align-items:center;
 z-index:999;
 }
 
-.fullscreen img{
-width:90%;
-}
-
-/* TRUST */
-.trust{
-font-size:14px;
-line-height:1.6;
-color:#ccc;
-}
+.fullscreen img{width:90%;}
 
 /* MOBILE */
 @media(max-width:768px){
 .gallery img{width:100%;}
 .logo-img{width:140px;}
-.btn{padding:12px 18px;}
 }
 
 /* FOOTER */
@@ -222,6 +220,12 @@ font-size:12px;
 <button onclick="calcPrice()" class="btn">Fiyat Hesapla</button>
 
 <h3 id="result"></h3>
+
+<!-- 🔥 YENİ MESAJ -->
+<p id="note" class="note">
+Bu fiyatlar dövme modeline ve boyutuna göre değişebilir. En doğru fiyat için bizimle iletişime geçin.
+</p>
+
 </section>
 
 <section class="section fade">
@@ -236,17 +240,6 @@ font-size:12px;
 </div>
 </section>
 
-<section class="section fade">
-<h2>Hijyen & Güven</h2>
-<p class="trust">
-✔ Tek kullanımlık iğneler<br>
-✔ Steril ekipman<br>
-✔ Profesyonel çalışma ortamı<br>
-✔ Deneyimli sanatçı<br>
-✔ %100 müşteri memnuniyeti
-</p>
-</section>
-
 <div class="fullscreen" id="full" onclick="closeFull()">
 <img id="fullImg">
 </div>
@@ -257,7 +250,7 @@ font-size:12px;
 
 <script>
 
-// SCROLL ANIMATION
+// ANIMATION
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -276,7 +269,7 @@ function closeFull(){
 document.getElementById("full").style.display="none";
 }
 
-// PRICE SYSTEM
+// PRICE
 function calcPrice(){
 let size=document.getElementById("size").value;
 let style=document.getElementById("style").value;
@@ -296,6 +289,9 @@ max=Math.round(max);
 
 document.getElementById("result").innerHTML=
 "Yaklaşık Fiyat: "+min+" - "+max+" ₺";
+
+// 🔥 MESAJI GÖSTER
+document.getElementById("note").classList.add("show");
 }
 
 </script>
